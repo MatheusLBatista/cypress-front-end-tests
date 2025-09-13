@@ -27,3 +27,20 @@
 Cypress.Commands.add('getByData', (seletor) => { 
     return cy.get(`[data-test=${seletor}]`)
  });
+
+Cypress.Commands.add('login', (email, senha) => {
+    cy.getByData("botao-login").click();
+    cy.getByData('email-input').type(`${email}`);
+    cy.getByData('senha-input').type(`${senha}`);
+    cy.getByData('botao-enviar').click();
+})
+
+Cypress.Commands.add('transacao', (tipo, valor) => {
+    cy.getByData('select-opcoes').select(`${tipo}`);
+    cy.getByData('form-input').type(`${valor}`);
+    cy.getByData('realiza-transacao').click();
+})
+
+Cypress.Commands.add('logout', () => {
+    cy.getByData('botao-sair').click();
+})
